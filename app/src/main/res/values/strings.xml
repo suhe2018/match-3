@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">水果消消乐</string>
+
+    <!-- Main Menu -->
+    <string name="title_main">🍎 水果消消乐 🍇</string>
+    <string name="subtitle_main">消除水果，挑战高分！</string>
+    <string name="btn_easy">🌱 简单</string>
+    <string name="btn_medium">🌿 普通</string>
+    <string name="btn_hard">🔥 困难</string>
+    <string name="btn_high_scores">🏆 排行榜</string>
+    <string name="best_score">最高: %d</string>
+    <string name="easy_desc">5种水果 · 90秒</string>
+    <string name="medium_desc">6种水果 · 60秒</string>
+    <string name="hard_desc">8种水果 · 45秒 · 冰块</string>
+
+    <!-- Game Screen -->
+    <string name="score_label">分数</string>
+    <string name="time_label">时间</string>
+    <string name="combo_label">连击 ×%d</string>
+    <string name="btn_pause">⏸</string>
+    <string name="btn_hint">💡</string>
+    <string name="shuffle_notice">无可用移动，正在重新排列！</string>
+    <string name="pause_title">游戏暂停</string>
+    <string name="pause_message">要继续还是退出？</string>
+    <string name="resume">继续游戏</string>
+    <string name="quit">退出</string>
+
+    <!-- Result Screen -->
+    <string name="result_title">游戏结束！</string>
+    <string name="result_score_label">最终得分</string>
+    <string name="result_max_combo">最高连击: ×%d</string>
+    <string name="result_total_matches">消除次数: %d</string>
+    <string name="new_record">🎉 新纪录！</string>
+    <string name="btn_play_again">再来一局</string>
+    <string name="btn_main_menu">返回主菜单</string>
+    <string name="btn_high_scores_result">查看排行榜</string>
+
+    <!-- High Score Screen -->
+    <string name="high_score_title">🏆 排行榜</string>
+    <string name="no_scores">还没有记录，快来挑战吧！</string>
+    <string name="btn_back">← 返回</string>
+
+    <!-- Ranks -->
+    <string name="rank_legend">🏆 传奇</string>
+    <string name="rank_diamond">💎 钻石</string>
+    <string name="rank_gold">🥇 黄金</string>
+    <string name="rank_silver">🥈 白银</string>
+    <string name="rank_bronze">🥉 青铜</string>
+    <string name="rank_beginner">🌱 新手</string>
+</resources>

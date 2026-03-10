@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Apple shape -->
+    <path
+        android:fillColor="#FF3B30"
+        android:pathData="M54,28 C54,28 46,18 36,22 C26,26 26,40 36,44 C40,46 44,45 48,43 L54,48 L60,43 C64,45 68,46 72,44 C82,40 82,26 72,22 C62,18 54,28 54,28 Z" />
+
+    <!-- Leaf -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M54,20 C54,20 58,12 66,14 C64,20 60,22 54,20 Z" />
+
+    <!-- Stem -->
+    <path
+        android:fillColor="#795548"
+        android:strokeColor="#795548"
+        android:strokeWidth="2"
+        android:pathData="M54,20 L54,28" />
+
+    <!-- Highlight shine -->
+    <path
+        android:fillColor="#40FFFFFF"
+        android:pathData="M40,30 C40,30 36,34 38,40 C40,36 44,32 40,30 Z" />
+
+</vector>

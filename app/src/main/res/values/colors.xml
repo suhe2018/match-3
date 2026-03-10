@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Colors -->
+    <color name="primary">#FF6B35</color>
+    <color name="primary_dark">#E55A2B</color>
+    <color name="primary_light">#FF8A65</color>
+    <color name="secondary">#4ECDC4</color>
+    <color name="accent">#FFE66D</color>
+
+    <!-- Background -->
+    <color name="bg_dark">#1A1A2E</color>
+    <color name="bg_card">#16213E</color>
+    <color name="bg_surface">#0F3460</color>
+
+    <!-- Text -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0BEC5</color>
+    <color name="text_accent">#FFE66D</color>
+
+    <!-- Difficulty Colors -->
+    <color name="difficulty_easy">#4CAF50</color>
+    <color name="difficulty_medium">#FF9800</color>
+    <color name="difficulty_hard">#F44336</color>
+
+    <!-- Timer Colors -->
+    <color name="timer_normal">#4ECDC4</color>
+    <color name="timer_warning">#FFB300</color>
+    <color name="timer_danger">#F44336</color>
+
+    <!-- HUD -->
+    <color name="hud_bg">#AA000000</color>
+    <color name="combo_color">#FFD700</color>
+
+    <!-- Special Fruits -->
+    <color name="special_glow">#FFFF00</color>
+
+    <!-- Status Bar -->
+    <color name="status_bar">#0F3460</color>
+
+    <!-- White with alpha -->
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="white_30">#4DFFFFFF</color>
+    <color name="white_10">#1AFFFFFF</color>
+
+    <!-- Black with alpha -->
+    <color name="black_50">#80000000</color>
+    <color name="black_30">#4D000000</color>
+</resources>
