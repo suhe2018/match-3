@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.*
 import android.os.Handler
 import android.os.Looper
+import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.BounceInterpolator
@@ -24,7 +25,11 @@ import kotlin.math.min
  * - Running animations: match flash, gravity fall, spawn pop, swap wobble
  * - Showing hint highlights
  */
-class GameView(context: Context) : View(context), GameEventListener {
+class GameView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr), GameEventListener {
 
     // ─── Engine ───────────────────────────────────────────────────────────────
     lateinit var engine: GameEngine
