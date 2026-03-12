@@ -122,8 +122,8 @@ class GameEngine(val difficulty: Difficulty) {
         for (r in 0 until rows) {
             var c = 0
             while (c < cols) {
-                val fruit = board[r][c].fruitType ?: run { c++; continue }
-                if (board[r][c].isLocked) { c++; continue }
+                val fruit = board[r][c].fruitType
+                if (fruit == null || board[r][c].isLocked) { c++; continue }
                 var len = 1
                 while (c + len < cols &&
                     board[r][c + len].fruitType == fruit &&
@@ -141,8 +141,8 @@ class GameEngine(val difficulty: Difficulty) {
         for (c in 0 until cols) {
             var r = 0
             while (r < rows) {
-                val fruit = board[r][c].fruitType ?: run { r++; continue }
-                if (board[r][c].isLocked) { r++; continue }
+                val fruit = board[r][c].fruitType
+                if (fruit == null || board[r][c].isLocked) { r++; continue }
                 var len = 1
                 while (r + len < rows &&
                     board[r + len][c].fruitType == fruit &&
