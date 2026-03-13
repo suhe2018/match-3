@@ -38,6 +38,8 @@ class GameView @JvmOverloads constructor(
     fun attachEngine(eng: GameEngine) {
         engine = eng
         eng.listener = this
+        if (width > 0 && height > 0) computeLayout(width, height)
+        invalidate()
     }
 
     // ─── Callbacks for Activity ───────────────────────────────────────────────
@@ -446,6 +448,7 @@ class GameView @JvmOverloads constructor(
     // ─── Hint System ──────────────────────────────────────────────────────────
 
     fun showHint() {
+        if (!::engine.isInitialized) return
         val hint = engine.getHint() ?: return
         hintRow1 = hint.first.first;  hintCol1 = hint.first.second
         hintRow2 = hint.second.first; hintCol2 = hint.second.second

@@ -80,28 +80,52 @@ class SoundManager(private val context: Context) {
         vibrateMedium()
     }
 
+    @Suppress("DEPRECATION")
     private fun vibrateLight() {
         if (!vibrationEnabled) return
-        getVibrator()?.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.DEFAULT_AMPLITUDE))
+        val vibrator = getVibrator() ?: return
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(30, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            vibrator.vibrate(30)
+        }
     }
 
+    @Suppress("DEPRECATION")
     private fun vibrateMedium() {
         if (!vibrationEnabled) return
-        getVibrator()?.vibrate(VibrationEffect.createOneShot(60, 128))
+        val vibrator = getVibrator() ?: return
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(60, 128))
+        } else {
+            vibrator.vibrate(60)
+        }
     }
 
+    @Suppress("DEPRECATION")
     private fun vibrateHeavy() {
         if (!vibrationEnabled) return
-        val timings = longArrayOf(0, 50, 30, 80)
-        val amplitudes = intArrayOf(0, 100, 0, 200)
-        getVibrator()?.vibrate(VibrationEffect.createWaveform(timings, amplitudes, -1))
+        val vibrator = getVibrator() ?: return
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val timings = longArrayOf(0, 50, 30, 80)
+            val amplitudes = intArrayOf(0, 100, 0, 200)
+            vibrator.vibrate(VibrationEffect.createWaveform(timings, amplitudes, -1))
+        } else {
+            vibrator.vibrate(longArrayOf(0, 50, 30, 80), -1)
+        }
     }
 
+    @Suppress("DEPRECATION")
     private fun vibrateError() {
         if (!vibrationEnabled) return
-        val timings = longArrayOf(0, 80, 40, 80)
-        val amplitudes = intArrayOf(0, 150, 0, 150)
-        getVibrator()?.vibrate(VibrationEffect.createWaveform(timings, amplitudes, -1))
+        val vibrator = getVibrator() ?: return
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val timings = longArrayOf(0, 80, 40, 80)
+            val amplitudes = intArrayOf(0, 150, 0, 150)
+            vibrator.vibrate(VibrationEffect.createWaveform(timings, amplitudes, -1))
+        } else {
+            vibrator.vibrate(longArrayOf(0, 80, 40, 80), -1)
+        }
     }
 
     @Suppress("DEPRECATION")
