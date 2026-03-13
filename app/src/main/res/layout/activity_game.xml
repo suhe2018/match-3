@@ -58,15 +58,16 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Timer progress bar -->
-    <ProgressBar
+    <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressTimer"
-        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:max="100"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
         android:progress="100"
-        android:progressTint="@color/primary"
-        android:progressBackgroundTint="@color/bg_surface"
+        app:trackThickness="4dp"
+        app:trackCornerRadius="0dp"
+        app:indicatorColor="@color/primary"
+        app:trackColor="@color/bg_surface"
         app:layout_constraintTop_toBottomOf="@id/hudTop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
