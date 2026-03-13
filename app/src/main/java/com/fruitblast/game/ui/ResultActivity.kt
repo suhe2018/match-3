@@ -1,6 +1,7 @@
 package com.fruitblast.game.ui
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -61,7 +62,7 @@ class ResultActivity : AppCompatActivity() {
             val intent = Intent(this, GameActivity::class.java)
             intent.putExtra(GameActivity.EXTRA_DIFFICULTY, difficulty.name)
             startActivity(intent)
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            applyFadeTransition()
             finish()
         }
 
@@ -69,12 +70,25 @@ class ResultActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            applyFadeTransition()
             finish()
         }
 
         binding.btnHighScores.setOnClickListener {
             startActivity(Intent(this, HighScoreActivity::class.java))
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun applyFadeTransition() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            overrideActivityTransition(
+                OVERRIDE_TRANSITION_OPEN,
+                android.R.anim.fade_in,
+                android.R.anim.fade_out
+            )
+        } else {
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
     }
 

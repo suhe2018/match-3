@@ -16,15 +16,19 @@ import android.os.Build
  */
 class SoundManager(private val context: Context) {
 
-    private val soundPool: SoundPool = SoundPool.Builder()
-        .setMaxStreams(6)
-        .setAudioAttributes(
-            AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_GAME)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                .build()
-        )
-        .build()
+    private val soundPool: SoundPool? = try {
+        SoundPool.Builder()
+            .setMaxStreams(6)
+            .setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_GAME)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build()
+            )
+            .build()
+    } catch (e: Exception) {
+        null
+    }
 
     private var enabled = true
     private var vibrationEnabled = true
@@ -139,6 +143,6 @@ class SoundManager(private val context: Context) {
     }
 
     fun release() {
-        soundPool.release()
+        soundPool?.release()
     }
 }

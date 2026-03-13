@@ -1,11 +1,13 @@
 package com.fruitblast.game.ui
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.fruitblast.game.R
@@ -78,12 +80,6 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    private val hintRunnable = object : Runnable {
-        override fun run() {
-            handler.postDelayed(this, hintCheckInterval)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGameBinding.inflate(layoutInflater)
@@ -99,6 +95,13 @@ class GameActivity : AppCompatActivity() {
 
         setupEngine()
         setupUI()
+
+        // Register back press handler (replaces deprecated onBackPressed override)
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                showPauseDialog()
+            }
+        })
 
         lastMoveTimeMs = System.currentTimeMillis()
         lastTickMs = System.currentTimeMillis()
@@ -210,12 +213,13 @@ class GameActivity : AppCompatActivity() {
             putExtra(EXTRA_IS_RECORD, isRecord)
         }
         startActivity(intent)
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        applyFadeTransition()
         finish()
     }
 
     private fun showPauseDialog() {
-        engine.gameState.status = com.fruitblast.game.data.GameStatus.PAUSED
+        if (!::engine.isInitialized) return
+        engine.gameState.status = GameStatus.PAUSED
         handler.removeCallbacks(timerRunnable)
         lastTickMs = 0L
 
@@ -225,16 +229,29 @@ class GameActivity : AppCompatActivity() {
             .setPositiveButton(getString(R.string.resume)) { _, _ -> resumeGame() }
             .setNegativeButton(getString(R.string.quit)) { _, _ ->
                 finish()
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                applyFadeTransition()
             }
             .setCancelable(false)
             .show()
     }
 
     private fun resumeGame() {
-        engine.gameState.status = com.fruitblast.game.data.GameStatus.PLAYING
+        engine.gameState.status = GameStatus.PLAYING
         lastTickMs = System.currentTimeMillis()
         handler.post(timerRunnable)
+    }
+
+    @Suppress("DEPRECATION")
+    private fun applyFadeTransition() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            overrideActivityTransition(
+                OVERRIDE_TRANSITION_OPEN,
+                android.R.anim.fade_in,
+                android.R.anim.fade_out
+            )
+        } else {
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
     }
 
     private fun resetIdleTimer() {
@@ -248,7 +265,7 @@ class GameActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         if (::engine.isInitialized && !engine.gameState.isGameOver) {
-            engine.gameState.status = com.fruitblast.game.data.GameStatus.PAUSED
+            engine.gameState.status = GameStatus.PAUSED
             handler.removeCallbacks(timerRunnable)
             lastTickMs = 0L
         }
@@ -266,9 +283,5 @@ class GameActivity : AppCompatActivity() {
         handler.removeCallbacksAndMessages(null)
         binding.gameView.cleanup()
         soundManager.release()
-    }
-
-    override fun onBackPressed() {
-        showPauseDialog()
     }
 }

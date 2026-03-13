@@ -1,6 +1,7 @@
 package com.fruitblast.game.ui
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -67,7 +68,20 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, GameActivity::class.java)
         intent.putExtra(GameActivity.EXTRA_DIFFICULTY, difficulty.name)
         startActivity(intent)
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        applyFadeTransition()
+    }
+
+    @Suppress("DEPRECATION")
+    private fun applyFadeTransition() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            overrideActivityTransition(
+                OVERRIDE_TRANSITION_OPEN,
+                android.R.anim.fade_in,
+                android.R.anim.fade_out
+            )
+        } else {
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
     }
 
     private fun animateEntrance() {
