@@ -72,7 +72,7 @@ class GameActivity : AppCompatActivity() {
                     lastMoveTimeMs = now
                 }
             }
-            if (!engine.gameState.isGameOver) {
+            if (::engine.isInitialized && !engine.gameState.isGameOver) {
                 handler.postDelayed(this, timerInterval)
             }
         }
@@ -247,7 +247,7 @@ class GameActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        if (!engine.gameState.isGameOver) {
+        if (::engine.isInitialized && !engine.gameState.isGameOver) {
             engine.gameState.status = com.fruitblast.game.data.GameStatus.PAUSED
             handler.removeCallbacks(timerRunnable)
             lastTickMs = 0L
@@ -256,7 +256,7 @@ class GameActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (!engine.gameState.isGameOver && engine.gameState.isPaused) {
+        if (::engine.isInitialized && !engine.gameState.isGameOver && engine.gameState.isPaused) {
             resumeGame()
         }
     }
