@@ -13,7 +13,7 @@
         android:hardwareAccelerated="true">
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden">
@@ -24,18 +24,18 @@
         </activity>
 
         <activity
-            android:name=".ui.GameActivity"
+            android:name=".GameActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name=".ui.ResultActivity"
+            android:name=".ResultActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.HighScoreActivity"
+            android:name=".HighScoreActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
